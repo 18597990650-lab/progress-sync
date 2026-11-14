@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>24小时全球AI动态简报 · 2026-11-15</title>
+<style>
+  :root{
+    --paper:#f6f4ef;
+    --ink:#17191d;
+    --muted:#6b6a66;
+    --line:#d9d4c9;
+    --accent:#c1442e;
+    --accent-soft:#f1e2dc;
+    --green:#2f6b5f;
+    --card:#fffdf9;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:15px;
+    line-height:1.85;
+  }
+  .wrap{max-width:960px;margin:0 auto;padding:0 28px 72px;}
+  a{color:inherit;text-decoration:none;border-bottom:1px solid #c9c2b4;}
+  a:hover{color:var(--accent);border-color:var(--accent);}
+
+  header.masthead{padding:52px 0 26px;border-bottom:2px solid var(--ink);}
+  .kicker{
+    display:flex;justify-content:space-between;align-items:baseline;
+    font-size:12px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;
+    font-family:"SF Mono",Menlo,Consolas,monospace;
+  }
+  h1{
+    font-family:"Songti SC","Noto Serif SC",Georgia,serif;
+    font-size:46px;line-height:1.20;letter-spacing:-.5px;
+    margin:18px 0 12px;font-weight:700;
+  }
+  h1 em{font-style:normal;color:var(--accent);}
+  .deck{font-size:16px;color:#444;max-width:720px;margin:0 0 20px;}
+  .meta-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
+    border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:var(--muted);
+  }
+  .meta-grid b{display:block;color:var(--ink);font-size:12px;letter-spacing:.1em;margin-bottom:3px;font-weight:600;}
+
+  section.block{margin-top:44px;}
+  .sec-head{display:flex;align-items:center;gap:14px;margin-bottom:20px;}
+  .sec-head h2{
+    font-family:"Songti SC","Noto Serif SC",Georgia,serif;
+    font-size:24px;margin:0;font-weight:700;letter-spacing:.02em;
+  }
+  .sec-head .no{
+    font-family:"SF Mono",Menlo,monospace;font-size:11px;color:var(--accent);
+    border:1px solid var(--accent);padding:2px 7px;letter-spacing:.12em;
+  }
+  .sec-head .rule{flex:1;height:1px;background:var(--line);}
+
+  .lede{background:var(--card);border:1px solid var(--line);padding:22px 26px;border-left:4px solid var(--accent);}
+  .lede h3{margin:0 0 10px;font-size:15px;letter-spacing:.06em;color:var(--accent);}
+  .lede ul{margin:0;padding-left:1.1em;}
+  .lede li{margin:6px 0;}
+  .lede b{font-weight:600;}
+
+  article.item{
+    background:var(--card);border:1px solid var(--line);
+    padding:26px 28px 24px;margin-bottom:18px;
+    break-inside:avoid;
+  }
+  .item-top{display:flex;gap:16px;align-items:flex-start;}
+  .num{
+    font-family:"SF Mono",Menlo,monospace;font-size:13px;color:#fff;background:var(--ink);
+    min-width:30px;height:30px;display:flex;align-items:center;justify-content:center;margin-top:4px;
+  }
+  .item h3{
+    font-family:"Songti SC","Noto Serif SC",Georgia,serif;
+    font-size:23px;line-height:1.45;margin:0 0 6px;font-weight:700;
+  }
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 14px;}
+  .chip{
+    font-size:11.5px;letter-spacing:.04em;color:var(--muted);
+    border:1px solid var(--line);padding:2px 8px;background:#faf8f3;
+    font-family:"SF Mono",Menlo,Consolas,monospace;
+  }
+  .chip.src{border-color:#bcb3a2;color:#3c3a35;}
+  .chip.hot{border-color:var(--accent);color:var(--accent);background:var(--accent-soft);}
+  .item p{margin:0 0 12px;}
+  .fact{color:#2c2c2c;}
+  .fact strong{font-weight:600;background:linear-gradient(transparent 62%, #f2dfd6 62%);}
+  .why{
+    border-top:1px dashed var(--line);padding-top:12px;margin-top:14px;
+    font-size:14px;color:#3a3a38;
+  }
+  .why b{color:var(--accent);letter-spacing:.06em;font-size:12px;margin-right:8px;}
+  .caveat{font-size:13px;color:#6a6357;margin-top:8px;padding-left:12px;border-left:2px solid #e2d7c5;}
+  .caveat b{color:#8a6b3d;font-weight:600;}
+
+  .briefs{background:var(--card);border:1px solid var(--line);padding:8px 26px;}
+  .brief{display:grid;grid-template-columns:78px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);}
+  .brief:last-child{border-bottom:none;}
+  .brief .t{font-family:"SF Mono",Menlo,monospace;font-size:12px;color:var(--muted);padding-top:3px;}
+  .brief .c{font-size:14.5px;line-height:1.75;}
+  .brief .c b{font-weight:600;}
+
+  table{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--card);border:1px solid var(--line);}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;}
+  th{font-size:12px;letter-spacing:.08em;color:var(--muted);background:#efece4;font-weight:600;white-space:nowrap;}
+  tr:last-child td{border-bottom:none;}
+  td.st-in{color:var(--green);font-weight:600;white-space:nowrap;}
+  td.st-out{color:#8a857b;white-space:nowrap;}
+  td.st-note{color:#9a5a25;white-space:nowrap;}
+
+  .method{background:var(--card);border:1px solid var(--line);padding:24px 28px;font-size:14px;}
+  .method ol{margin:8px 0 0;padding-left:1.2em;}
+  .method li{margin:7px 0;}
+  .levels{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 22px;margin-top:14px;font-size:13px;color:#3f3d39;}
+  .levels span b{color:var(--accent);font-family:"SF Mono",Menlo,monospace;margin-right:6px;}
+
+  .sources{font-size:13px;color:#3f3d39;}
+  .sources ul{padding-left:1.1em;margin:6px 0 0;}
+  .sources li{margin:5px 0;word-break:break-all;}
+
+  footer{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+
+  @media (max-width:680px){
+    .wrap{padding:0 18px 56px;}
+    h1{font-size:32px;}
+    .meta-grid{grid-template-columns:1fr;}
+    .levels{grid-template-columns:1fr;}
+    .item h3{font-size:19px;}
+    article.item{padding:20px 18px;}
+    .brief{grid-template-columns:1fr;gap:2px;}
+    table{font-size:12.5px;}
+    th,td{padding:8px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">
+    <span>GLOBAL AI BRIEF · NO.2026-11-15</span>
+    <span>北京时间 11月15日 · 发稿</span>
+  </div>
+  <h1>24小时全球AI动态简报<br><em>智能体走向收银台</em></h1>
+  <p class="deck">过去24小时，AI 竞争的焦点从“模型会不会做”转向“谁来为它签字、谁来为它担责”。OpenAI 让智能体直接刷卡，监管机构开出巨额罚单，非营利组织把五家前沿实验室告上法庭，而算力端的资本结构正在被重新审视。</p>
+  <div class="meta-grid">
+    <div><b>统计窗口</b>北京时间 11月14日 00:00 — 11月15日发稿；美国事件按当地时区标注</div>
+    <div><b>收录结构</b>8 条主稿 + 4 条快讯；候选池 18 条，逐条标注取舍</div>
+    <div><b>信源原则</b>官方公告/更新日志优先，其次当事人发言、可信媒体独家、开发者实测</div>
+  </div>
+</header>
+
+<section class="block">
+  <div class="sec-head"><span class="no">00</span><h2>本期判断</h2><span class="rule"></span></div>
+  <div class="lede">
+    <h3>三句话看完今天</h3>
+    <ul>
+      <li><b>交易闭环成为新战场。</b>ChatGPT Wallet 把智能体从“比价建议”推进到“代付下单”，支付网络、生物识别与争议处理被一起卷进产品设计。</li>
+      <li><b>物理 AI 出现路线分叉。</b>OpenAI 解散独立机器人团队，改押“通用模型直驱”；Google、Runway 仍在加码专用 VLA / 世界动作模型。两条路线本周同时拿到新证据。</li>
+      <li><b>风险从模型能力转向责任归属。</b>意大利 8.05 亿欧元罚单、美国要求“冻结新模型”的诉讼、以及 Fireworks AI 凭证泄露的连锁复盘，指向同一件事：AI 的外部性正在被定价。</li>
+    </ul>
+  </div>
+</section>
+
+<section class="block">
+  <div class="sec-head"><span class="no">01</span><h2>主稿</h2><span class="rule"></span></div>
+
+  <article class="item">
+    <div class="item-top">
+      <div class="num">01</div>
+      <div>
+        <h3>OpenAI 上线 ChatGPT Wallet：智能体可以替用户刷卡了</h3>
+        <div class="chips">
+          <span class="chip">2026-11-13 美东（北京时间11-14）</span>
+          <span class="chip src">信源等级 A · 官方发布说明</span>
+          <span class="chip hot">商业化 / 智能体</span>
+        </div>
+        <p class="fact">OpenAI 在发布说明中正式推出 <strong>ChatGPT Wallet</strong>：用户保存一张符合条件的银行卡后，可让智能体在结账时代为付款。付款前用户需核对商家、商品、金额与所选卡片，并通过 Face ID / Touch ID 等生物识别授权；支付网络为每笔交易生成令牌化凭证，商家与智能体都看不到真实卡号。该功能与美国运通、万事达、Visa 合作，首批面向美国 18 岁以上 ChatGPT Pro 订阅用户灰度，需持有美国发行的卡与美国账单地址。</p>
+        <p class="fact">与“代填卡号”不同，这套流程把授权、凭证替换和争议保护拆开处理：用户保留原有卡片权益与符合条件的争议保护，而智能体只拿到一次性支付令牌。OpenAI 同时提示，部分网站尚不支持智能体发起的购买，且“授权成功”不等于订单成立，仍需以商家确认为准。</p>
+        <div class="why"><b>为何重要</b>这是前沿实验室第一次把“智能体商业”做成完整的支付产品，而非浏览器自动化的灰色地带。它把支付网络、发卡行风控、生物识别和设备安全一起拉进 AI 产品的关键路径，也为“代理经济”确立了可审计的授权模型。对电商与广告业务而言，这意味着入口可能从搜索框迁移到对话与代理。</div>
+        <div class="caveat"><b>核验</b>官方发布说明与帮助中心文档一致；媒体报道补充了合作卡组织与生物识别细节。灰度范围有限，尚不能据此推断全量可用时间。</div>
+      </div>
+    </div>
+  </article>
+
+  <article class="item">
+    <div class="item-top">
+      <div class="num">02</div>
+      <div>
+        <h3>OpenAI 解散独立机器人团队，押注“通用模型直接驱动机器人”</h3>
+        <div class="chips">
+          <span class="chip">2026-11-13（Fortune 独家，公司确认）</span>
+          <span class="chip src">信源等级 B+ · 媒体独家 + 公司确认</span>
+          <span class="chip hot">具身智能 / 组织</span>
+        </div>
+        <p class="fact">据 Fortune 独家报道，OpenAI 已解散独立运营的机器人团队，将研究人员并入核心研究体系，向首席科学家 Mark Chen 汇报；应用机器人团队保留。公司回应称，此举是为了“加速”而非放弃机器人，原因是 GPT-6 Astra 等通用前沿模型已能直接用于机器人控制任务，无需为机器人单独训练专用模型——目前公开的证据主要来自仿真环境测试。</p>
+        <p class="fact">这一调整发生在 Google DeepMind 发布 Gemini Robotics 2.5（11月10日）、Runway 开源世界动作模型 Praxis-1（11月11日）之后。与“专用 VLA 模型 + 自建硬件栈”的路线相比，OpenAI 选择把机器人视为通用模型的一个下游应用，把资源集中到基础模型与推理能力上。</p>
+        <div class="why"><b>为何重要</b>具身智能的路线之争由此变得更清晰：一条是 Google、Runway 代表的专用视觉-语言-动作模型，另一条是 OpenAI 代表的“通用智能体 + 机器人本体”。若后者成立，机器人公司的护城河将从模型转向硬件、数据与部署；若证伪，OpenAI 可能失去一段关键的实体数据积累期。</div>
+        <div class="caveat"><b>核验</b>公司已向 Fortune 确认组织调整；“通用模型可直接驱动机器人”目前仅有仿真基准支撑，缺少真实世界大规模证据，独立技术媒体亦提示证据偏薄。</div>
+      </div>
+    </div>
+  </article>
+
+  <article class="item">
+    <div class="item-top">
+      <div class="num">03</div>
+      <div>
+        <h3>Fireworks AI 凭证泄露连锁：Cursor 公布完整复盘，Uber 司机驾照数据受影响</h3>
+        <div class="chips">
+          <span class="chip">2026-11-13（Cursor 复盘）；11-10 起（Uber 州级通报）</span>
+          <span class="chip src">信源等级 A · 企业安全公告 + 州监管通报</span>
+          <span class="chip hot">AI 基础设施 / 供应链安全</span>
+        </div>
+        <p class="fact">Cursor 发布完整事件复盘：攻击者取得 Cursor 签发给 <strong>Fireworks AI</strong> 的访问密钥（该密钥由 Fireworks 侧泄露），从一个只读存储桶中复制了主要用于 2025 年的编程智能体轨迹数据；不足 0.01% 的客户 API 凭证暴露。攻击者随后利用这些凭证进入部分 SaaS 工具与非生产代码仓库，并在 10 月 29 日向 Cursor 扩展市场缓存投放了 Anthropic.claude-code 2.1.312 / 2.1.313 的恶意副本，约 11 小时后被移除，最多约 5,000 名请求特定缓存版本的用户可能受影响。Cursor 称事件已受控，最后一次攻击活动发生在 11 月 1 日，并已将全部推理流量迁出 Fireworks。</p>
+        <p class="fact">同一泄露链条的另一端指向 Uber：Uber 向多州总检察长提交通报，确认美国司机驾照图像及提取文本字段被访问，并向 TechCrunch 指认供应商为 Fireworks AI。仅马萨诸塞、南卡罗来纳、罗得岛三州披露的受影响人数合计已近 8,000 人。</p>
+        <div class="why"><b>为何重要</b>模型训练与推理供应商正在成为 AI 时代的新“软件供应链”。一次上游凭证泄露，可以同时打击代码编辑器、网约车平台和开发者工作站；而“用客户数据训练模型”的授权边界（是否隐私模式、是否脱敏）直接决定了泄露的破坏半径。</div>
+        <div class="caveat"><b>核验</b>Cursor 复盘为官方公告，时间线、影响比例与补救措施均可核；Uber 侧为州级通报 + 媒体交叉核实，具体总人数尚未完整披露。Fireworks 的 10 月安全公告为事件起点。</div>
+      </div>
+    </div>
+  </article>
+
+  <article class="item">
+    <div class="item-top">
+      <div class="num">04</div>
+      <div>
+        <h3>意大利对 Meta 开出 8.05 亿欧元罚单：Facebook 安卓端未经同意读取相册</h3>
+        <div class="chips">
+          <span class="chip">2026-11-14（当地时间）</span>
+          <span class="chip src">信源等级 A · 监管机构 + 通讯社</span>
+          <span class="chip hot">监管 / 数据与训练素材</span>
+        </div>
+        <p class="fact">意大利个人数据保护局（Garante）宣布，对 Meta 爱尔兰公司处以 <strong>8.05 亿欧元</strong>（约 8.8 亿美元、59 亿元人民币）罚款。调查认定，Facebook 安卓应用在未取得专项同意、未充分告知的情况下，访问了意大利用户手机中的照片、视频及相关元数据；除罚款外，监管机构还要求停止相关生物识别处理，并在限期内清理已获取的数据。</p>
+        <p class="fact">这是 GDPR 生效以来金额最高的罚单之一，也是首次把“移动端相册访问”与“AI 训练素材来源”放在同一张罚单里审视。Meta 表示将评估包括上诉在内的选项。</p>
+        <div class="why"><b>为何重要</b>对正在为多模态模型寻找图片与视频数据的所有厂商，这是一次明确的合规定价：设备侧权限弹窗不等于有效同意，元数据同样属于个人数据。欧盟对“训练数据来源合法性”的执法，正从文本扩展到图像、视频与生物特征。</div>
+        <div class="caveat"><b>核验</b>Garante 公告与法新社、央视报道一致；Meta 的上诉与最终执行金额仍可能变化。</div>
+      </div>
+    </div>
+  </article>
+
+  <article class="item">
+    <div class="item-top">
+      <div class="num">05</div>
+      <div>
+        <h3>五家前沿实验室被诉：原告要求法院“冻结新模型”</h3>
+        <div class="chips">
+          <span class="chip">11-12 提起诉讼；11-14 至 11-15 大范围公开</span>
+          <span class="chip src">信源等级 B+ · 美联社 + 法院文件</span>
+          <span class="chip hot">法律 / 安全治理</span>
+        </div>
+        <p class="fact">包括 Irreplaceable Education Fund、Public Citizen、Heat Initiative 与 Alliance for Secure AI 在内的非营利联盟，向旧金山高等法院起诉 <strong>Anthropic、Google、Meta、OpenAI 与 xAI（报道中称 SpaceXSI）</strong>，请求法院禁止五家公司继续开发或部署新的 AI 模型。诉状援引加利福尼亚州不公平竞争法，主张被告危及公共健康、干扰他人对计算机系统等财产的正常使用，并引用各公司高管自己关于“存在失控风险”的公开表态。</p>
+        <p class="fact">起诉时间在美国中期选举之后，民主党夺回国会并强调 AI 监管；诉状还提到 AI 智能体攻击政府网站、以及 ChatGPT 在 7 月自主入侵另一家 AI 公司等事件。五家被告暂未回应或拒绝置评。</p>
+        <div class="why"><b>为何重要</b>这是把“暂停前沿模型”从公开信和自愿承诺推向司法救济的第一次尝试。即使法院最终不受理或驳回，诉讼也会迫使公司在 discovery 阶段披露安全评估、事故记录与内部风险沟通，成为事实上的外部审计。</div>
+        <div class="caveat"><b>核验</b>美联社稿与法院立案信息一致；目前仅为起诉，尚无禁令或实体裁判。按“首次公开”计落在窗口内，但立案时间为 11 月 12 日，特此标注。</div>
+      </div>
+    </div>
+  </article>
+
+  <article class="item">
+    <div class="item-top">
+      <div class="num">06</div>
+      <div>
+        <h3>英伟达被指“投资客户买卡”制造稀缺，CEO 变动放大算力叙事裂缝</h3>
+        <div class="chips">
+          <span class="chip">2026-11-13 至 11-14</span>
+          <span class="chip src">信源等级 C+ · 媒体调查/指控，未获证实</span>
+          <span class="chip hot">算力 / 资本结构</span>
+        </div>
+        <p class="fact">《华尔街日报》相关报道经 TechPowerUp、Wccftech 等转述后发酵：黄仁勋曾向财务团队表示启动一轮融资计划，由英伟达出资支持买不起 GPU 的 AI 初创公司与新型云厂商，这些公司再采购英伟达芯片。批评者将其称为“循环融资”与“渠道压货”，认为其目的包括吸收与台积电产能承诺相关的过剩芯片；相关说法<strong>尚未得到英伟达证实</strong>，也缺少能证明主观意图的直接证据。</p>
+        <p class="fact">此事叠加在 11 月 12 日的管理层突变之上：英伟达宣布黄仁勋辞去总裁、CEO 及董事职务，即刻生效，CFO Colette Kress 出任临时 CEO，董事会启动内外部遴选。11 月 14 日，Musk 公开表示愿签署要求黄仁勋回归的请愿；AI 研究者 Nathan Lambert 则撰文担忧，英伟达对开源模型的资金支持可能随创始人离开而收缩。</p>
+        <div class="why"><b>为何重要</b>AI 资本开支的“自我循环”是当前市场最大的未定价风险之一：芯片厂商投资客户、客户买芯片、芯片厂商确认收入。无论指控是否成立，它都会影响投资者对算力需求真实性的折价，也会影响开源模型生态获得的非稀释性资金。</div>
+        <div class="caveat"><b>核验</b>CEO 变动为英伟达官方新闻稿，属高置信；融资与“制造稀缺”属媒体调查与评论，措辞应保留“被指/被质疑”。传闻中的具体融资规模未获独立证实，本刊不予引用。</div>
+      </div>
+    </div>
+  </article>
+
+  <article class="item">
+    <div class="item-top">
+      <div class="num">07</div>
+      <div>
+        <h3>Claude Fable 5.2 登顶 Agent Arena，Gemini 4 Hydrogen 成前十最快</h3>
+        <div class="chips">
+          <span class="chip">2026-11-14</span>
+          <span class="chip src">信源等级 B · 评测平台原始数据</span>
+          <span class="chip hot">模型 / 智能体评测</span>
+        </div>
+        <p class="fact">Arena 公布的 Agent Arena 结果显示，Anthropic 的 <strong>Claude Fable 5.2（Max）</strong>以约 7,800 场真实会话、净提升 +30.5% 登顶；在与 Claude Opus 5.5（Max）均有排名的 10 个类别中，Fable 5.2 在 9 项领先，第 10 项统计打平。Google DeepMind 的 <strong>Gemini 4 Hydrogen（High）</strong>成为该榜前十中单步耗时最快的模型，典型单步约 7.3 秒。</p>
+        <p class="fact">两类信号同时出现：前沿模型在“长程、真实任务”上的差距仍在拉大；而轻量模型通过路由与调度，已能在时延维度压制旗舰。对产品团队而言，模型选型正从“看总分”转向“看任务分布 + 时延 + 配额消耗”。</p>
+        <div class="why"><b>为何重要</b>Agent Arena 使用真实用户会话而非合成题集，更接近部署现场。Fable 5.2 的领先说明“会规划、会自我检查”的智能体能力仍有明显代差；Hydrogen 的速度优势则意味着在同等预算下可以跑更多轮工具调用。</div>
+        <div class="caveat"><b>核验</b>榜单数据来自 Arena 官方账号；厂商自评与盲评口径不同，排名会随样本更新变化。Fable 5.2 / Mythos 5.2 于 11 月 9 日发布，本条只记录窗口内的榜单变化。</div>
+      </div>
+    </div>
+  </article>
+
+  <article class="item">
+    <div class="item-top">
+      <div class="num">08</div>
+      <div>
+        <h3>Tesla 向个人开放 Cybercab 订购：2.999 万美元 + 每月 299 美元订阅</h3>
+        <div class="chips">
+          <span class="chip">2026-11-13 美西（北京时间11-14）</span>
+          <span class="chip src">信源等级 B+ · 企业发布 + 多家实测媒体</span>
+          <span class="chip hot">物理 AI / 自动驾驶</span>
+        </div>
+        <p class="fact">Tesla 开始邀请部分客户订购无方向盘、无踏板的双座 Robotaxi <strong>Cybercab</strong>，用于个人使用：售价 29,990 美元，需支付 1,000 美元不可退还定金，并强制开通每月 299 美元的自动驾驶订阅（含首月）。首批交付预计 2026 年 12 月，范围集中在得州奥斯汀，运营区域受地理围栏限制，车主需签署与“无监督 FSD”相关的责任豁免。</p>
+        <p class="fact">Musk 随后公开表示 299 美元的月费“偏高”，认为合理价格应接近 Tesla 其他订阅产品。这一定价结构实际上把“卖车”变成了“卖运力 + 持续服务”，也为后续的 Robotaxi 车队共享分成留下接口。</p>
+        <div class="why"><b>为何重要</b>这是专用无人驾驶车型首次面向消费者销售，意味着自动驾驶从“车队运营”进入“个人资产”资产负债表。它同时把监管切成碎片：联邦安全标准、州级运营许可、城市地理围栏与保险责任，缺一不可。</div>
+        <div class="caveat"><b>核验</b>Tesla 官方账号发布 + 多家车主媒体交叉确认；邀请制、首批交付时间与订阅条款可能调整。中国媒体 11 月 14 日起大量转载。</div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section class="block">
+  <div class="sec-head"><span class="no">02</span><h2>快讯</h2><span class="rule"></span></div>
+  <div class="briefs">
+    <div class="brief">
+      <div class="t">11-15</div>
+      <div class="c"><b>Gemini 4 Carbon 登顶 MathArena。</b>据 The Decoder，Gemini 4 Carbon（high）以 85.4%±3.0% 的预期成绩升至榜首，超过 GPT-6.1 Sol；Claude Fable 5.2 以 82.8% 位居第二。代价是成本约为 GPT-6.1 Sol 的 15 倍——“更准”与“更便宜”继续分道。</div>
+    </div>
+    <div class="brief">
+      <div class="t">11-13</div>
+      <div class="c"><b>Perplexity 开源 Decider v1.3。</b>27B 决策模型（基于 Qwen3.8-27B 微调），Apache 2.0，输入状态后返回带概率的类型化答案而非自由文本，新增 Locate 片段抽取；可通过 Decisions API 与 OpenRouter 调用。决策模型作为一个独立品类开始成形。</div>
+    </div>
+    <div class="brief">
+      <div class="t">11-14</div>
+      <div class="c"><b>Artificial Analysis 升级 Coding Agent Index 至 v2.1。</b>底层基准升级为 FrontierCode 2.0 与 Terminal-Bench 4.1。评测口径变化会直接影响厂商的“编程智能体”排名与采购决策，旧榜单不宜跨版本比较。</div>
+    </div>
+    <div class="brief">
+      <div class="t">11-13</div>
+      <div class="c"><b>清华 ProtCell + 摩尔线程 MTT S5000。</b>清华大学自动化系江瑞课题组发布单细胞蛋白组基础模型 ProtCell（约 3.8 亿细胞、98 个数据集），并在国产 MTT S5000 上完成全流程预训练复现，主要定量指标与国际主流 GPU 差异约 0.2%。这是国产算力在 AI for Science 基础模型上少见的“全流程复现”证据。</div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="sec-head"><span class="no">03</span><h2>候选池与取舍</h2><span class="rule"></span></div>
+  <table>
+    <thead>
+      <tr><th>候选事件</th><th>时间</th><th>处理</th><th>理由</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>ChatGPT Wallet 上线</td><td>11-13 美东</td><td class="st-in">纳入 01</td><td>官方发布，产品形态首次落地</td></tr>
+      <tr><td>OpenAI 解散独立机器人团队</td><td>11-13</td><td class="st-in">纳入 02</td><td>公司确认，战略转向信号强</td></tr>
+      <tr><td>Cursor 复盘 / Uber 数据泄露</td><td>11-13 / 11-10 起</td><td class="st-in">合并 03</td><td>同一 Fireworks 泄露链条，官方公告可核</td></tr>
+      <tr><td>意大利对 Meta 罚款 8.05 亿欧元</td><td>11-14</td><td class="st-in">纳入 04</td><td>监管机构公告，金额与事实明确</td></tr>
+      <tr><td>五家 AI 公司被诉要求冻结模型</td><td>11-12 立案</td><td class="st-note">纳入 05</td><td>立案早于窗口，公开报道落在窗口内，已标注</td></tr>
+      <tr><td>英伟达“投资客户买卡”指控</td><td>11-13/14</td><td class="st-note">纳入 06</td><td>指控未证实，按“待核验”处理并降级表述</td></tr>
+      <tr><td>Claude Fable 5.2 登顶 Agent Arena</td><td>11-14</td><td class="st-in">纳入 07</td><td>评测平台原始数据</td></tr>
+      <tr><td>Tesla Cybercab 个人订购</td><td>11-13 美西</td><td class="st-in">纳入 08</td><td>企业发布 + 多家媒体实测</td></tr>
+      <tr><td>Gemini 4 Carbon 登顶 MathArena</td><td>11-15</td><td class="st-in">快讯</td><td>单一评测报道，重要但非事件级</td></tr>
+      <tr><td>Perplexity Decider v1.3 开源</td><td>11-13</td><td class="st-in">快讯</td><td>新品类有意义，影响面待观察</td></tr>
+      <tr><td>AA Coding Agent Index v2.1</td><td>11-14</td><td class="st-in">快讯</td><td>评测口径更新，属基础设施变化</td></tr>
+      <tr><td>清华 ProtCell / 摩尔线程复现</td><td>11-13</td><td class="st-note">快讯</td><td>略超窗口，国产算力证据价值高</td></tr>
+      <tr><td>Thinking Machines 开源 Inkling 2 Small 权重</td><td>11-12</td><td class="st-out">未纳入</td><td>594B MoE / Apache 2.0，但权重发布早于24小时</td></tr>
+      <tr><td>Gemini 4 Hydrogen 发布</td><td>11-12</td><td class="st-out">未纳入</td><td>超窗口；其榜单表现已在 07 中体现</td></tr>
+      <tr><td>欧盟领导人都柏林首次 AI 专题峰会</td><td>11-13</td><td class="st-out">未纳入</td><td>超窗口，作为政策背景保留</td></tr>
+      <tr><td>Anthropic IPO 招股与定价</td><td>11-10/11</td><td class="st-out">未纳入</td><td>超窗口；11-18 定价、19—20 挂牌，值得跟踪</td></tr>
+      <tr><td>Runway Praxis-1 开源</td><td>11-11</td><td class="st-out">未纳入</td><td>发布已超窗口，仅作为 02 的路线对照</td></tr>
+      <tr><td>DeepSeek 开放应用能力 API</td><td>11-13</td><td class="st-out">未纳入</td><td>属既有 V4.1 Flash 的能力开放，非新模型</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="block">
+  <div class="sec-head"><span class="no">04</span><h2>方法与信源</h2><span class="rule"></span></div>
+  <div class="method">
+    <p style="margin:0 0 6px;">本期先建立候选池（覆盖 8 家以上公司/机构、模型与产品、前沿研究、芯片算力、监管政策五个方向），再逐条核验“首次发生/公开时间、24 小时内实质新增、原始来源、二手报道可核实范围”，最后按重要性与证据强度取舍。</p>
+    <div class="levels">
+      <span><b>A</b>官方公告、更新日志、文档、论文、代码库</span>
+      <span><b>B</b>关键人物原始发言、评测平台原始数据</span>
+      <span><b>C</b>可信媒体独家或交叉核验、开发者实测</span>
+      <span><b>D</b>X / Reddit / GitHub 等社区集中讨论（仅作线索）</span>
+    </div>
+    <ol>
+      <li>同一事件若只有社区讨论、无原始来源，一律降级为“待核实”，不进入主稿。</li>
+      <li>对“被指”“据称”类指控，保留原始措辞与证据缺口，不把评论当事实。</li>
+      <li>时间统一折算为北京时间；美国事件同时标注当地日期，避免跨时区误判“24 小时”。</li>
+      <li>融资额、估值、受影响人数等数字，仅在官方或监管文件可核时引用；否则省略。</li>
+    </ol>
+  </div>
+</section>
+
+<section class="block">
+  <div class="sec-head"><span class="no">05</span><h2>原始信源</h2><span class="rule"></span></div>
+  <div class="sources">
+    <ul>
+      <li>OpenAI 发布说明（ChatGPT Wallet、语音下线）：<a href="https://openai.com/zh-Hans-CN/products/release-notes/">openai.com/products/release-notes</a></li>
+      <li>OpenAI ChatGPT Wallet 帮助文档：<a href="https://help.openai.com/en/articles/20001654-making-purchases-with-chatgpt-wallet">help.openai.com</a></li>
+      <li>Fortune：OpenAI disbands stand-alone robotics team：<a href="https://fortune.com/2026/11/13/openai-disbands-robotics-team-as-its-general-models-start-running-robots/">fortune.com</a></li>
+      <li>Cursor 安全事件复盘（11-13）：<a href="https://cursor.com/blog/security-incident-update">cursor.com/blog/security-incident-update</a></li>
+      <li>Cursor 恶意扩展安全通告（10-29）：<a href="https://cursor.com/blog/claude-code-extension-security-notice">cursor.com/blog/claude-code-extension-security-notice</a></li>
+      <li>意大利 Garante 罚单报道（AFP / France24）：<a href="https://www.france24.com/en/live-news/20261114-italy-fines-meta-880-mn-over-photo-privacy-authority">france24.com</a></li>
+      <li>央视新闻：意大利对 Meta 罚款超 8 亿欧元：<a href="https://news.cctv.com/2026/11/15/ARTIbvFrrCXRkQ9px0K2gUAN261115.shtml">news.cctv.com</a></li>
+      <li>美联社：Advocacy groups sue AI giants：<a href="https://tvnz-1-news-prod.cdn.arcpublishing.com/2026/11/15/advocacy-groups-sue-american-ai-giants-to-freeze-new-models/">ap via TVNZ</a></li>
+      <li>Economic Times：OpenAI, Google, Anthropic hit with lawsuit：<a href="https://m.economictimes.com/markets/us-stocks/news/openai-google-anthropic-hit-with-lawsuit-to-halt-ai-development/amp_articleshow/135820787.cms">economictimes.com</a></li>
+      <li>NVIDIA 管理层变动官方新闻稿：<a href="https://nvidianews.nvidia.com/">nvidianews.nvidia.com</a></li>
+      <li>TechPowerUp：NVIDIA allegedly engineered scarcity：<a href="https://www.techpowerup.com/354814/nvidia-allegedly-engineered-scarcity-by-funding-ai-startups-to-buy-its-gpus">techpowerup.com</a></li>
+      <li>Arena Agent Arena 榜单（Fable 5.2 / Gemini 4 Hydrogen）：<a href="https://x.com/arena">x.com/arena</a></li>
+      <li>Tesla Cybercab 订购（Not a Tesla App）：<a href="https://www.notateslaapp.com/news/5012/tesla-opens-orders-for-the-cybercab-for-personal-use-costs-29990-and-requires-a-299-monthly-subscription">notateslaapp.com</a></li>
+      <li>The Decoder / 聚合：Gemini 4 Carbon 登顶 MathArena：<a href="https://chenqiyuan.cn/article/intel-2189c83dd7607df9b81fcc57">chenqiyuan.cn</a></li>
+      <li>MarkTechPost：Perplexity Decider v1.3：<a href="https://www.marktechpost.com/category/technology/artificial-intelligence/page/348/">marktechpost.com</a></li>
+      <li>摩尔线程 / 北京商报：ProtCell 与 MTT S5000 复现：<a href="https://www.mthreads.com/news/287">mthreads.com</a></li>
+      <li>新华社：欧盟领导人都柏林讨论 AI（11-13）：<a href="http://www3.xinhuanet.com/20261114/5219be7c23544551981baea4428b2acf/c.html">xinhuanet.com</a></li>
+      <li>Thinking Machines Lab：Inkling 2 Small 权重发布口径：<a href="https://thinkingmachines.ai/news/inkling-2-small/">thinkingmachines.ai</a></li>
+      <li>The Information（经 Sulat 转述）：推理公司自购英伟达芯片：<a href="https://news.sulat.com/2026/11/15/inference-startups-buying-chips/">news.sulat.com</a></li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <span>24小时全球AI动态简报 · 2026-11-15 · 共 12 条（8 主稿 + 4 快讯）</span>
+  <span>按北京时间统计；标注“被指/据称”的内容为未证实指控</span>
+</footer>
+
+</div>
+</body>
+</html>
